@@ -1,0 +1,211 @@
+camera      cam1        
+pixeldim     1280  960
+worlddim      8.0  6.0
+viewpoint     4.0  3.0  8.0
+
+material     white 
+ambient        1.0   1.0   1.0 
+diffuse        3.0   3.0   3.0 
+specular       0.3 
+
+shininess      0.0 
+
+transparency   0.0 
+
+
+material     brightwhite0 
+ambient        7.0   7.0   8.0 
+diffuse        5.0   5.0   6.0 
+specular       1.0 
+
+shininess      4.0 
+
+transparency   0.0 
+
+
+material     red 
+ambient        4.0   0.0   1.0 
+diffuse        7.0   5.0   5.0 
+specular       1.0 
+
+shininess      3.0 
+
+transparency   0.0 
+
+
+material     brightwhite 
+ambient        0.0   0.0   1.2 
+diffuse        5.0   5.0   6.0 
+specular       2.0 
+
+shininess      8.0 
+
+transparency   0.0 
+
+
+sphere       light 
+material     brightwhite0 
+center      4.0      8.0     -4.0 
+radius      2.0 
+
+
+plane        floor 
+material     white 
+normal     0.0     1.0     0.0 
+point      0.0     0.0     0.0 
+
+
+fplane       left 
+material     white 
+normal     1.0     0.2     0.1 
+point      0.0     0.0     0.0 
+xdir        0.2    -0.9    -0.4 
+dimensions        8.0     6.0 
+rot row[0]        0.2    -0.9    -0.4 
+rot row[1]        0.0     0.4    -0.9 
+rot row[2]        1.0     0.2     0.1 
+
+
+fplane       right 
+material     white 
+normal    -1.0    -0.2     0.1 
+point      7.0     0.0    -7.0 
+xdir        0.2    -0.9     0.4 
+dimensions        9.0     6.0 
+rot row[0]        0.2    -0.9     0.4 
+rot row[1]        0.0     0.4     0.9 
+rot row[2]       -1.0    -0.2     0.1 
+
+
+sphere       one 
+material     brightwhite 
+center      2.0      0.5     -0.8 
+radius      0.5 
+
+
+sphere       two 
+material     brightwhite 
+center      2.0      0.5     -2.8 
+radius      0.5 
+
+
+sphere       three 
+material     brightwhite 
+center      2.0      0.5     -4.8 
+radius      0.5 
+
+
+sphere       four 
+material     brightwhite 
+center      4.0      0.5     -0.8 
+radius      0.5 
+
+
+sphere       five 
+material     brightwhite 
+center      4.0      0.5     -2.8 
+radius      0.5 
+
+
+sphere       six 
+material     brightwhite 
+center      4.0      0.5     -4.8 
+radius      0.5 
+
+
+sphere       seven 
+material     brightwhite 
+center      6.0      0.5     -0.8 
+radius      0.5 
+
+
+sphere       eight 
+material     brightwhite 
+center      6.0      0.5     -2.8 
+radius      0.5 
+
+
+sphere       nine 
+material     brightwhite 
+center      6.0      0.5     -4.8 
+radius      0.5 
+
+
+sphere       ten 
+material     brightwhite 
+center      3.0      1.2     -1.8 
+radius      0.5 
+
+
+sphere       eleven 
+material     brightwhite 
+center      5.0      1.2     -1.8 
+radius      0.5 
+
+
+sphere       twelve 
+material     brightwhite 
+center      3.0      1.2     -3.8 
+radius      0.5 
+
+
+sphere       thirteen 
+material     brightwhite 
+center      5.0      1.2     -3.8 
+radius      0.5 
+
+
+sphere       fourteen 
+material     brightwhite 
+center      4.0      2.0     -4.8 
+radius      0.8 
+
+
+sphere       fifteen 
+material     red 
+center      3.0      0.5     -1.8 
+radius      0.2 
+
+
+sphere       sixteen 
+material     red 
+center      5.0      0.5     -1.8 
+radius      0.2 
+
+
+sphere       seventeen 
+material     red 
+center      3.0      0.5     -3.8 
+radius      0.2 
+
+
+sphere       eighteen 
+material     red 
+center      5.0      0.5     -3.8 
+radius      0.2 
+
+
+fplane       ceiling 
+material     red 
+normal     0.0    -0.3     1.0 
+point      1.0     4.0   -16.0 
+xdir        1.0     0.0     0.0 
+dimensions        6.0     4.0 
+rot row[0]        1.0     0.0     0.0 
+rot row[1]       -0.0     1.0     0.3 
+rot row[2]        0.0    -0.3     1.0 
+
+
+light        center 
+location         4     8     1 
+emissivity       3     3     3 
+
+light        front 
+location         4     8    -4 
+emissivity       1     1     1 
+spot
+light        top 
+location         4     3    -8 
+emissivity       2     2    10 
+point      4.0      2.0     -4.0 
+theta     35.0 

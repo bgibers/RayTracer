@@ -1,0 +1,228 @@
+
+camera cam1
+{
+  pixeldim  1280 960
+  worlddim  8 6
+  viewpoint 4 3 8
+}
+
+material white
+{
+   diffuse 3  3 3
+   ambient 1  1 1
+   specular 0.3
+}
+
+material brightwhite0
+{
+   diffuse 5  5 6
+   ambient 7 7 8
+   specular 1
+   shininess 4
+}
+
+material red
+{
+   diffuse 7  5 5
+   ambient 4  0 1
+   specular 2
+   shininess 3
+}
+
+material brightwhite
+{
+   diffuse 5  5 6
+   ambient 0 0 1.25
+   specular 2
+   shininess 8
+}
+
+light center
+{
+   location 4 8 1
+   emissivity  3  3 3
+}
+
+
+light front
+{
+   location 4  8 -4
+   emissivity 0.75 0.75 0.75
+}
+
+spotlight top
+{
+   location 4 3  -7.55
+   emissivity  2  2 10
+   theta 35
+   point 4 2 -4
+}
+
+sphere  light
+{
+   material brightwhite0
+   center  4 8 -4
+   radius 2
+}
+
+plane   floor
+{
+   material white
+   normal 0 1 0
+   point 0 0 0
+}
+
+fplane   left
+{
+   material white
+   normal   10 2 1
+   point    0 0 0
+   xdir     1 0 0
+   dimensions 8 6
+}
+
+fplane   right
+{
+   material white
+   normal  -10  -2 1
+   point    7 0 -7
+   xdir     1 0 0
+   dimensions 9 6
+}
+
+sphere  one
+{
+   material brightwhite
+   center  2 .5 -.75
+   radius 0.5
+}
+
+sphere  two
+{
+   material brightwhite
+   center  2 .5 -2.75
+   radius 0.5
+}
+
+sphere  three
+{
+   material brightwhite
+   center  2 .5 -4.75
+   radius 0.5
+}
+
+sphere  four
+{
+   material brightwhite
+   center  4 .5 -.75
+   radius 0.5
+}
+
+sphere  five
+{
+   material brightwhite
+   center  4 .5 -2.75
+   radius 0.5
+}
+
+sphere  six
+{
+   material brightwhite
+   center  4 .5 -4.75
+   radius 0.5
+}
+
+sphere  seven
+{
+   material brightwhite
+   center  6 .5 -.75
+   radius 0.5
+}
+
+sphere  eight
+{
+   material brightwhite
+   center  6 .5 -2.75
+   radius 0.5
+}
+
+sphere  nine
+{
+   material brightwhite
+   center  6 .5 -4.75
+   radius 0.5
+}
+
+sphere  ten
+{
+   material brightwhite
+   center  3 1.25 -1.75
+   radius 0.5
+}
+
+sphere  eleven
+{
+   material brightwhite
+   center  5 1.25 -1.75
+   radius 0.5
+}
+
+sphere  twelve
+{
+   material brightwhite
+   center  3 1.25 -3.75
+   radius 0.5
+}
+
+sphere  thirteen
+{
+   material brightwhite
+   center  5 1.25 -3.75
+   radius 0.5
+}
+
+sphere  fourteen
+{
+   material brightwhite
+   center  4 2 -4.75
+   radius 0.75
+}
+
+sphere  fifteen
+{
+   material red
+   center  3 .5 -1.75
+   radius 0.25
+}
+
+sphere  sixteen
+{
+   material red
+   center  5 .5 -1.75
+   radius 0.25
+}
+
+sphere  seventeen
+{
+   material red
+   center  3 .5 -3.75
+   radius 0.25
+}
+
+sphere  eighteen
+{
+   material red
+   center  5 .5 -3.75
+   radius 0.25
+}
+
+fplane ceiling
+{
+   material red
+   normal 0 -.3 1
+   point  1 4 -16
+   xdir   1 0 0
+   dimensions 6 4
+}
+
+

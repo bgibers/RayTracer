@@ -1,0 +1,65 @@
+material lime
+{
+   ambient 4  5 0
+}
+
+material black
+{
+   ambient 1  1 1
+}
+
+material white
+{
+   ambient 9  9 9
+}
+
+material moon
+{
+   ambient 50  50 45
+}
+
+material orange
+{
+   ambient 6  3 1
+}
+
+material skyblue
+{
+   ambient 4  7 7
+}
+
+material green
+{
+   ambient 3  5 0
+}
+
+material goldenyellow
+{
+   ambient 6  5 1
+}
+
+material cream
+{
+   ambient 5  5 4
+}
+
+material red
+{
+   ambient 4  0 1
+}
+
+material red2
+{
+   ambient 5  0 1
+}
+
+
+material yellow
+{
+   ambient  5  4 0
+}
+
+material gray
+{
+   ambient 2.5 3.5 2.5
+}

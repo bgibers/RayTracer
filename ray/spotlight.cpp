@@ -1,0 +1,62 @@
+/* spotlight.cpp */
+
+#include "ray.h"
+#include <math.h>
+
+#define PI 3.141592653589793
+
+static pparm_t spot_parse[] =
+{
+	{"theta",  1, sizeof(double), "%lf", 0},
+	{"point",  3, sizeof(double), "%lf", 0},
+};
+
+#define NUM_ATTRS (sizeof(spot_parse) / sizeof(pparm_t))
+
+spotlight_t::spotlight_t(
+FILE *in,
+model_t *model, 
+int attrmax): light_t(in, model, 2)
+{
+	int mask;
+	//vec_t dir;
+
+	spot_parse[0].loc = &halftheta;
+	spot_parse[1].loc = &point;
+	mask = parser(in, spot_parse, NUM_ATTRS, attrmax);
+	assert(mask != 0);
+
+	vec_diff(&location, &point, &direction);
+	vec_unit(&direction, &direction);
+	double radians;
+	radians = halftheta * M_PI / 180; 
+	costheta = cos(radians);
+	
+}
+
+int spotlight_t::vischeck(vec_t *hitloc)      // *hitloc = last hit location!
+{
+	
+	vec_t ray;
+	double dot;
+	vec_diff(&location, hitloc, &ray);
+	vec_unit(&ray, &ray);
+	dot = vec_dot(&ray, &direction);
+	
+	if(dot > costheta)
+		return 1;
+	else
+		return 0;
+}
+
+void spotlight_t::printer(FILE *out)
+{
+   	fprintf(out, "spot");
+	light_t::printer(out);
+	fprintf(out, "point %8.1lf %8.1lf %8.1lf \n", point.x, 
+						      point.y,
+						      point.z);
+	fprintf(out, "theta %8.1lf \n", halftheta);
+}
+	
+	  

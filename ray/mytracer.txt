@@ -1,0 +1,8 @@
+ambient
+diffuse
+specular
+finite plane
+spotlight
+glints
+
+

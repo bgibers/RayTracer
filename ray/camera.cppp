@@ -1,0 +1,149 @@
+//camera in C++
+//Genevieve Watkins
+//Small Project 3
+//Due November 13, 2013
+//Cpsc 102
+
+#include "ray.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+pparm_t cam_parse[] =
+{
+   {"pixeldim",  2, sizeof(int), "%d", 0},
+   {"worlddim",  2, sizeof(double), "%lf", 0},
+   {"viewpoint", 3, sizeof(double), "%lf", 0},
+};
+#define NUM_ATTRS (sizeof(cam_parse) / sizeof(pparm_t))
+
+camera_t::camera_t()
+{
+	cookie = CAM_COOKIE;
+
+}
+
+camera_t::camera_t(FILE *in)
+{
+   char  buf[256];
+   int   mask;
+   
+   assert(fscanf(in, "%s", name) == 1);
+
+   fscanf(in, "%s", buf);
+   assert(buf[0] == '{');
+
+   cookie = CAM_COOKIE;
+   //Parser. 
+   cam_parse[0].loc = &pixel_dim;
+   cam_parse[1].loc = &world_dim;
+   cam_parse[2].loc = &view_point;
+
+   mask = parser(in, cam_parse, NUM_ATTRS, 0);
+   assert(mask == 7);
+
+   //allocate a pixmap to hold the ppm image data
+   pixmap = (irgb_t *)malloc(sizeof(irgb_t) * 
+                   pixel_dim[0] * pixel_dim[1]);
+
+}
+
+void   camera_t::getdir(int x, int y, vec_t *dir)
+{
+   vec_t newvec;
+   newvec.x = (world_dim[0]*x)/(pixel_dim[X]-1);
+   newvec.y = (world_dim[0]*y)/(pixel_dim[Y]-1);
+   newvec.z = 0;
+
+   dir->x=newvec.x-view_point.x;
+   dir->y=newvec.y-view_point.y;
+   dir->z=newvec.z-view_point.y;
+   //dir->newvec.z-view_point.z;
+
+   vec_unit(dir, &newvec);
+	
+}
+
+void   camera_t::store_pixel(int x,int y, drgb_t *pix)
+{
+   int maprow;
+   irgb_t *maploc;
+
+   maprow = pixel_dim[1] - y - 1;
+   maploc = pixmap + maprow * pixel_dim[0] + x;
+
+   scale_and_clamp(pix);
+
+   maploc->r = (unsigned char) pix->r;
+   maploc->g = (unsigned char) pix->g;
+   maploc->b = (unsigned char) pix->b;
+}
+
+void camera_t::scale_and_clamp(drgb_t *pix)
+{
+   irgb_t *pixel = NULL;
+   pixel = (irgb_t *)malloc(sizeof(irgb_t));
+   double r = pix->r, g = pix->g, b = pix->b;
+	
+   pix->r = r * 255 + 0.5;
+      if(pix->r > 255.0)
+         pix->r = 255;
+      else if(pix->r < 0.0)
+	 pix->r = 0.0;
+
+   pix->g = g * 255 + 0.5;
+      if(pix->g > 255.0)
+	 pix->g = 255;
+      else if(pix->g < 0.0)
+	 pix->g = 0.0;
+	
+   pix->b = b * 255 + 0.5;
+      if(pix->b > 255.0)
+	 pix->b = 255;
+      else if(pix->b < 0.0)
+	 pix->b = 0.0;
+
+
+//Assign pixel to pixmap
+	pixel->r = pix->r;
+	pixel->g = pix->g;
+	pixel->b = pix->b;
+}
+
+int    camera_t::getxdim(void)
+{
+   return(pixel_dim[0]);
+}
+
+int    camera_t::getydim(void)
+{
+   return(pixel_dim[1]);
+}
+
+void   camera_t::getviewpt(vec_t *view)
+{
+   view->x = view_point.x;
+   view->y = view_point.y;
+   view->z = view_point.z;
+}
+
+void   camera_t::camera_print(FILE *out)
+{
+   fprintf(out, "\ncamera %s\n", name);
+   fprintf(out, "pixeldim  %d  %d\n", pixel_dim[0], pixel_dim[1]);
+   fprintf(out, "worlddim  %8.1lf %8.1lf\n", world_dim[0], world_dim[1]);
+   fprintf(out, "viewpoint %8.1lf %8.1lf %8.1lf\n", 
+						view_point.x, view_point.y, view_point.z);
+}
+
+void   camera_t::camera_write_image(FILE *out)
+{
+   //print header
+   fprintf(out, "P6\n%d %d 255\n", pixel_dim[0], pixel_dim[1]);
+   //writing the image
+   fwrite(pixmap, sizeof(irgb_t), pixel_dim[0]*pixel_dim[1], out);
+}
+
+void   camera_t::getpixsize(double *x, double *y)
+{
+  
+}
